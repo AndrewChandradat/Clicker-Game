@@ -1,0 +1,49 @@
+body {
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+	overflow: hidden;
+	background-color: darkolivegreen;
+}
+
+#barrier{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border: 3px solid transparent;
+	//background-color: green;
+	height: 300%;
+	width: 0px;
+	border-radius: 100%;
+	
+	background-color: brown;
+	
+}
+
+#circle {
+	position: absolute;
+	height: 10%;
+	width: 0px;
+	border-radius: 100%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background-color: red;
+}
+
+#instructions{
+	position: absolute;
+	color: black;
+	margin: auto;
+	text-align: center;
+	width: 100%;
+	
+}
+
+.debug{
+	
+	position: absolute;
+}
+
+

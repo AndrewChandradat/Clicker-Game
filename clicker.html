@@ -1,0 +1,30 @@
+<html>
+
+<head>
+<title> </title>
+
+	<!--remove ?v=<?=time();?> from css link -->
+<link rel="stylesheet" type="text/css" href="clicker.css?v=<?=time();?>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="text.js"></script>
+<script type="text/javascript" src="clicker.js"></script>
+</head>
+
+<body>	
+	<div id="barrier">
+		<div id="circle" ></div>
+	</div>
+	
+	<h1><span id="instructions">Hello?</span></h1>
+	
+	<div class="debug">
+		<h3>Circle Height: <span id="circleheight"></span><h3>
+		<h3>Barrier Height: <span id="barrierheight"></span><h3>
+		<h3>Imaginary Barrier Height: <span id="imaginebarrierheight"></span><h3>
+		<h3>Counter: <span id="counter"></span><h3>
+		<h3>Base Level: <span id="base_debug"></span><h3>
+	</div>
+	
+</body>
+
+</html>

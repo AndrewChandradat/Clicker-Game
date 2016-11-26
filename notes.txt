@@ -1,0 +1,3 @@
+Clicking on the circle makes it bigger. Once it's big enough, zoom out and show barrier.
+
+The circle probably doesn't need to shrink slightly after a click. See if that stops it from occasionally freezing.
