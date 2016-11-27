@@ -2,7 +2,8 @@
 $(document).ready(function(){	
 	
 	var base_level = 0;
-	
+	var disable_click = false;
+	var diamInc = 100; //the higher the number, the faster the game goes.
 	//the original button
 	var circleD = $("#circle").height(); //diameter of circle
 	var initCircleD = circleD;
@@ -23,8 +24,6 @@ $(document).ready(function(){
 	
 	$("#instructions").html( build_base );
 	
-	
-	
 
 	//debug info
 	var counter = 0; //number of clicks
@@ -36,12 +35,55 @@ $(document).ready(function(){
 		$("#base_debug").html(base_level);		
 	}, 100);
 	
+	function increaseRadius( circle ){
+		circleD += diamInc;
+		circle.css( "height", circleD );
+		circle.css( "width", circleD );
+	} 
+	
+	function decreaseRadius( circle){
+		circleD -= diamInc / 2;
+		circle.css( "height", circleD );
+		circle.css( "width", circleD );
+	} 
+	function resetCircle( circle, initialD ){
+	//freeze circle
+	disable_click = true;
+	//alert(initialD);
+	circle.css( "transition", "width 2s, height 2s");
+	
+	circle.css( "height", initialD );
+	circle.css( "width", initialD );		
+	
+	setTimeout( function(){ 
+		circle.css( "transition", "initial");
+		//unfreeze circle
+		disable_click = false;
+	}, 2000);	
+}
+
+function scoutArea( circle, initialD, x, y ){
+	disable_click = true;
+	circle.css( "transition", "width 2s, height 2s, transform 2s");
+	circle.css( "height", initialD);
+	circle.css( "width", initialD );
+	circle.css( "transform", "translate(" + x + "%, " + y + "%)");
+	
+	setTimeout( function(){ 
+		circle.css( "transition", "initial");
+		//unfreeze circle
+		disable_click = false;
+	}, 2000);
+}
+
 	
 	$("#circle").click(function(){
-		if( !disable_click && base_level < 2){
+		if( !disable_click && (base_level < 2) ){
+			
 			increaseRadius( $("#circle") );
 			//is this seriously the only way this works?
 			setTimeout( function(){ decreaseRadius( $("#circle") )}, 100 );
+			//circleD = $("#circle").height();
 			
 			if( circleD > imageBarrierD ){
 				//build base
@@ -63,15 +105,16 @@ $(document).ready(function(){
 					islandD = islandD / 4.5;
 					scoutArea( $("#island"), islandD, "-60","-60" );
 					
-					$("#instructions").html( scout );
+					$("#instructions").html( search );
 					base_level++;
-					disable_click = true;
+					
 				}
 			} else {
-				circleD = $("#circle").height() 
+				 
 			}
 			
 			counter += 1;
+			
 		}
 	});
 
