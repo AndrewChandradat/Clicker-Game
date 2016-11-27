@@ -4,10 +4,8 @@ $(document).ready(function(){
 	var base_level = 0;
 	
 	//the original button
-	var disableClick = false; //used to determine if clicks need to be disabled for whatever reason.
 	var circleD = $("#circle").height(); //diameter of circle
 	var initCircleD = circleD;
-	var diamInc = 100; //amount the diameter of the circle increases when clicked.
 	$("#circle").css("width", circleD);
 	
 	//the base outline
@@ -23,12 +21,11 @@ $(document).ready(function(){
 	var oceanD = $("#ocean").height();
 	$("#ocean").css("width", oceanD);
 	
-	
-	
-	
-	
 	$("#instructions").html( build_base );
 	
+	
+	
+
 	//debug info
 	var counter = 0; //number of clicks
 	setInterval(function(){
@@ -39,52 +36,9 @@ $(document).ready(function(){
 		$("#base_debug").html(base_level);		
 	}, 100);
 	
-	function increaseRadius( circle ){
-		circleD += diamInc;
-		circle.css( "height", circleD );
-		circle.css( "width", circleD );
-	} 
-	
-	function decreaseRadius( circle){
-		circleD -= diamInc / 2;
-		circle.css( "height", circleD );
-		circle.css( "width", circleD );
-	} 
-	
-	
-	
-	function resetCircle( circle, initialD ){
-		//freeze circle
-		disableClick = true;
-		
-		circle.css( "transition", "width 2s, height 2s");
-		circle.css( "height", initialD);
-		circle.css( "width", initialD );		
-		
-		setTimeout( function(){ 
-			circle.css( "transition", "initial") 
-			//unfreeze circle
-			disableClick = false;
-		}, 2000);	
-	}
-	
-	function scoutArea( circle, initialD, x, y ){
-		disableClick = true;
-		circle.css( "transition", "width 2s, height 2s, transform 2s");
-		circle.css( "height", initialD);
-		circle.css( "width", initialD );
-		circle.css( "transform", "translate(" + x + "%, " + y + "%)");
-		
-		setTimeout( function(){ 
-			circle.css( "transition", "initial") 
-			//unfreeze circle
-			disableClick = false;
-		}, 2000);
-	}
 	
 	$("#circle").click(function(){
-		if( !disableClick ){
-			
+		if( !disable_click && base_level < 2){
 			increaseRadius( $("#circle") );
 			//is this seriously the only way this works?
 			setTimeout( function(){ decreaseRadius( $("#circle") )}, 100 );
@@ -111,8 +65,10 @@ $(document).ready(function(){
 					
 					$("#instructions").html( scout );
 					base_level++;
-					
+					disable_click = true;
 				}
+			} else {
+				circleD = $("#circle").height() 
 			}
 			
 			counter += 1;
