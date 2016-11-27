@@ -3,6 +3,30 @@ body {
 	-moz-user-select: none;     /* Firefox all */
 	-ms-user-select: none;      /* IE 10+ */
 	overflow: hidden;
+	
+}
+
+#ocean{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border: 3px solid transparent;
+	height: 1000%;
+	width: 0px;
+	border-radius: 100%;
+	background-color: cornflowerblue;
+}
+
+#island{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border: 3px solid transparent;
+	height: 100%;
+	width: 0px;
+	border-radius: 100%;
 	background-color: darkolivegreen;
 }
 
@@ -12,11 +36,9 @@ body {
 	top: 50%;
 	transform: translate(-50%, -50%);
 	border: 3px solid transparent;
-	//background-color: green;
-	height: 300%;
+	height: 30%;
 	width: 0px;
 	border-radius: 100%;
-	
 	background-color: brown;
 	
 }

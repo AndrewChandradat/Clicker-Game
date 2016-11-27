@@ -10,14 +10,22 @@ $(document).ready(function(){
 	var diamInc = 100; //amount the diameter of the circle increases when clicked.
 	$("#circle").css("width", circleD);
 	
-	//the outline
+	//the base outline
 	var barrierD = $("#barrier").height();
 	$("#barrier").css("width", barrierD );
 	var imageBarrierD = barrierD / 4;
 	
-	var mainButtonColor = "red";
-	var secondaryButtonColor = "blue";
-	var mainBarrierColor = "brown";
+	//the island
+	var islandD = $("#island").height();
+	$("#island").css("width", islandD );
+	
+	//ocean
+	var oceanD = $("#ocean").height();
+	$("#ocean").css("width", oceanD);
+	
+	
+	
+	
 	
 	$("#instructions").html( build_base );
 	
@@ -45,10 +53,9 @@ $(document).ready(function(){
 	
 	
 	
-	function resetCircle( circle, initialD, mainColor, secondColor ){
+	function resetCircle( circle, initialD ){
 		//freeze circle
 		disableClick = true;
-		circle.css( "background-color", secondColor);
 		
 		circle.css( "transition", "width 2s, height 2s");
 		circle.css( "height", initialD);
@@ -58,17 +65,15 @@ $(document).ready(function(){
 			circle.css( "transition", "initial") 
 			//unfreeze circle
 			disableClick = false;
-			circle.css("background-color", mainColor);
 		}, 2000);	
 	}
 	
-	function scoutArea( circle, initial D ){
+	function scoutArea( circle, initialD, x, y ){
 		disableClick = true;
-		
 		circle.css( "transition", "width 2s, height 2s, transform 2s");
 		circle.css( "height", initialD);
 		circle.css( "width", initialD );
-		$("#circle").css( "transform", "translate(100%, -60%)")
+		circle.css( "transform", "translate(" + x + "%, " + y + "%)");
 		
 		setTimeout( function(){ 
 			circle.css( "transition", "initial") 
@@ -76,7 +81,6 @@ $(document).ready(function(){
 			disableClick = false;
 		}, 2000);
 	}
-	
 	
 	$("#circle").click(function(){
 		if( !disableClick ){
@@ -86,20 +90,27 @@ $(document).ready(function(){
 			setTimeout( function(){ decreaseRadius( $("#circle") )}, 100 );
 			
 			if( circleD > imageBarrierD ){
+				//build base
 				if( base_level == 0 ){
 					
-					resetCircle( $("#circle"), initCircleD, mainButtonColor, mainButtonColor );
+					resetCircle( $("#circle"), initCircleD );
 					circleD = initCircleD;
-					resetCircle( $("#barrier"), imageBarrierD, mainBarrierColor, mainBarrierColor );
+					resetCircle( $("#barrier"), imageBarrierD );
 					$("#instructions").html( scout );
 					base_level++;
-					$("#base_debug").html(base_level);
 					
+				//scout area
 				} else if( base_level == 1){
-					base_level++;
+					
 					$("#barrier").css("background-color", "transparent");
-					scoutArea( $("#circle"), initCircleD);
+					initCircleD = initCircleD / 2;
+					scoutArea( $("#circle"), initCircleD, "600", "200" );
 					circleD = initCircleD;
+					islandD = islandD / 4.5;
+					scoutArea( $("#island"), islandD, "-60","-60" );
+					
+					$("#instructions").html( scout );
+					base_level++;
 					
 				}
 			}
@@ -107,5 +118,5 @@ $(document).ready(function(){
 			counter += 1;
 		}
 	});
-	
+
 });
