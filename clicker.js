@@ -1,6 +1,5 @@
 
 $(document).ready(function(){	
-	
 	var base_level = 0;
 	var disable_click = false;
 	var diamInc = 100; //the higher the number, the faster the game goes.

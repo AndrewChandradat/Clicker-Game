@@ -1,3 +1,7 @@
-Clicking on the circle makes it bigger. Once it's big enough, zoom out and show barrier.
+Clicking on the green should make it flash a lighter shade of green.
+After scouting, a circle around the base should be a darker shade of green.
 
-The circle probably doesn't need to shrink slightly after a click. See if that stops it from occasionally freezing.
+Establish base.
+Find food. Use up 1 every minute.
+Scout Area.
+Level base.
